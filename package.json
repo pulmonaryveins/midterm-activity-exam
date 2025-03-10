@@ -1,0 +1,23 @@
+{
+  "name": "midterm-activity-exam",
+  "version": "1.0.0",
+  "main": "question1.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pulmonaryveins/midterm-activity-exam.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pulmonaryveins/midterm-activity-exam/issues"
+  },
+  "homepage": "https://github.com/pulmonaryveins/midterm-activity-exam#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
