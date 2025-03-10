@@ -1,49 +1,33 @@
-const express = require('express');
-const { Sequelize, DataTypes } = require('sequelize');
-const app = express();
-const port = 3001;
+// Task list array
+let tasks = [];
 
-// Sequelize connection
-const sequelize = new Sequelize('mysql://root:@localhost:3306/mydatabase'); 
-
-// User model
-const User = sequelize.define('User', {
-id: {
-type: DataTypes.INTEGER,
-primaryKey: true,
-autoIncrement: true
-},
-name: {
-type: DataTypes.STRING,
-allowNull: false
-},
-email: {
-type: DataTypes.STRING,
-allowNull: false
-},
-status: {
-type: DataTypes.STRING,
-defaultValue: 'active'
+// Add new task
+function addTask(id, name, description) {
+    tasks.push({ id, name, description });
 }
-});
 
-// fetch all users
-app.get('/users', async (req, res) => {
-try {
-const users = await User.findAll();
-res.json(users);
-} catch (err) {
-res.status(500).json({ message: 'Error fetching users', error: err });
+// View all tasks
+function viewTasks() {
+    return tasks;
 }
-});
 
-// Start the server
-app.listen(port, async () => {
-try {
-await sequelize.authenticate();
-console.log('Database connected');
-console.log(`Server is running on http://localhost:${port}`);
-} catch (err) {
-console.error('Unable to connect to the database:', err);
+// Update a task
+function updateTask(id, updatedTask) {
+    const index = tasks.findIndex(task => task.id === id);
+    if (index !== -1) {
+        tasks[index] = { ...tasks[index], ...updatedTask };
+    }
 }
-});
+
+// Delete a task
+function deleteTask(id) {
+    tasks = tasks.filter(task => task.id !== id);
+}
+
+// Example usage
+addTask(1, 'HomeWork', 'This is a homework activity.');
+console.log(viewTasks());
+updateTask(1, { name: 'Task Updated' });
+console.log(viewTasks());
+deleteTask(1);
+console.log(viewTasks());

@@ -1,33 +1,13 @@
-// Task list array
-let tasks = [];
+// Import the required modules
+const express = require('express');
+const app = express();
 
-// Add new task
-function addTask(id, name, description) {
-    tasks.push({ id, name, description });
-}
+// Define a route
+app.get('/test', (req, res) => {
+    res.json({ message: 'Express is working! Vince Bryant Cabunilas' });
+});
 
-// View all tasks
-function viewTasks() {
-    return tasks;
-}
-
-// Update a task
-function updateTask(id, updatedTask) {
-    const index = tasks.findIndex(task => task.id === id);
-    if (index !== -1) {
-        tasks[index] = { ...tasks[index], ...updatedTask };
-    }
-}
-
-// Delete a task
-function deleteTask(id) {
-    tasks = tasks.filter(task => task.id !== id);
-}
-
-// Example usage
-addTask(1, 'Sample Task', 'This is a description');
-console.log(viewTasks());
-updateTask(1, { name: 'Updated Task' });
-console.log(viewTasks());
-deleteTask(1);
-console.log(viewTasks());
+// Listen on port 3000
+app.listen(3000, () => {
+    console.log('Server is running on port 3000');
+});
